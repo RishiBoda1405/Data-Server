@@ -1,0 +1,114 @@
+<!-- Header -->
+<div id="header" class="header">
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="assets/DS.mp4" type="video/mp4">
+    </video>
+    <!-- end of video -->
+    <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <h1>Data Server Dashboard</h1>
+                <div class="button-container">
+                    <a class="btn-solid-reg page-scroll" href="#intro">EXPLORE</a>
+                </div>
+                <!-- end of button-container -->
+            </div>
+            <!-- end of w-100 -->
+        </div>
+        <!-- end of d-flex -->
+    </div>
+    <!-- end of container -->
+</div>
+&nbsp;
+&nbsp;
+&nbsp;
+
+<div class="container shadow mt-5">
+    <div class="row">
+        <div class="col-md-6 p-0 m-0">
+            <button (click)="loginFun()" class="btn-block active" id="btn-1">Sign in</button>
+        </div>
+        <div class="col-md-6 m-0 p-0">
+            <button (click)="registerFun()" class="btn-block" id="btn-2">Sign up</button>
+        </div>
+    </div>
+
+    <!-- --------------login-------------------- -->
+    <div *ngIf="login" class="row justify-content-center align-items-center" id="signin">
+        <div class="col-md-12">
+            <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="form p-5">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label for="username">Username</label>
+                        <input formControlName="username" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label for="password">Password</label>
+                        <input formControlName="password" type="password" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-1">
+                        <input type="checkbox" name="remember" id="remember" />
+                    </div>
+                    <div class="col-11">
+                        <label for="password">Remember me</label>
+                    </div>
+                </div>
+                <input type="submit" value="Sign in" class="btn-block rounded mt-5 bt-login" />
+            </form>
+        </div>
+    </div>
+
+
+    <!-- ------------register------ -->
+
+    <div *ngIf="register" class="row justify-content-center align-items-center" id="signup">
+        <div class="col-md-12">
+            <form name="signup" [formGroup]="registerForm" (ngSubmit)="registerSubmit()" class="form p-5">
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <label for="username">Firstname*</label>
+                        <input formControlName="fname" type="text" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label for="username">Lastname*</label>
+                        <input formControlName="lname" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="password">Email*</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input formControlName="email" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label for="password">Password*</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input formControlName="password" type="password" class="form-control" />
+                    </div>
+                </div>
+                <!-- <div class="row mt-3">
+                    <div class="col-1">
+                        <input type="checkbox" name="remember" id="remember" />
+                    </div>
+                    <div class="col-11">
+                        <label for="password">Remember me</label>
+                    </div>
+                </div> -->
+                <input type="submit" value="Submit" class="btn-block rounded mt-5 bt-login" />
+            </form>
+        </div>
+    </div>
+</div>
+
+&nbsp;
+&nbsp;
+&nbsp;
