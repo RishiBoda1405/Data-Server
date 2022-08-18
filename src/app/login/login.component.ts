@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   registerForm = new FormGroup({
     fname: new FormControl('', Validators.required ),
     lname: new FormControl('', Validators.required ),
+
     email: new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")] ),
     password: new FormControl('', Validators.required)
 
@@ -69,12 +70,27 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (res:any) => {
           console.log(res);
-          localStorage.setItem('access_token', res.token);
-          this.router.navigate(['/home'])
+
+          if(res.statuscode ==200){
+            localStorage.removeItem('admin_token')
+            localStorage.setItem('access_token', res.token);
+            this.router.navigate(['/home'])
+          }
+
+          if (res.statuscode ==201){
+            console.log('inside');
+            localStorage.removeItem('access_token');
+            localStorage.setItem('admin_token', res.admintoken);
+            this.router.navigate(['/admin'])
+          }
+
+          if (res.statuscode == 404){
+            alert('Invalid Password or email')
+          }
         },
         error:(err:any)=> {
-          alert("Something went wrong")
           console.log(err);
+          alert("Some error occured");
         }
       })
 
@@ -91,12 +107,23 @@ export class LoginComponent implements OnInit {
       this.authService.registerService(this.registerForm.value)
       .subscribe( {
         next: (res:any) => {
+          console.log(res);
+          if (res.statuscode == 409){
+            alert(res.message);
+          }
+          if (res.statuscode == 200){
+            alert(res.message)
+          }
+        setTimeout(()=>{                           //<<<---using ()=> syntax
           window.location.reload();
-        },
+
+     }, 3000);
+
         error:(err:any)=> {
           console.log(err);
+          alert("An error occured!")
         }
-      })
+      }})
     }
     else{
       alert('Please fill all the fields')

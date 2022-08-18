@@ -43,8 +43,16 @@ export class AuthServiceService {
     return !helper.isTokenExpired(token);
   }
 
+
+  public isAdmin():boolean {
+    const token:any = localStorage.getItem('admin_token');
+    const helper = new JwtHelperService();
+    return !helper.isTokenExpired(token);
+  }
+
   logout(){
     localStorage.removeItem('acces_token');
+    localStorage.removeItem('admin_token');
     this.router.navigate(['/'])
   }
 

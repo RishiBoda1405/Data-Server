@@ -11,10 +11,13 @@ export class RoleguardService {
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const decodedToken = this.auth.getToken();
 
-    if(!this.auth.isAuthenticated()){
+
+    if(!this.auth.isAuthenticated() || !this.auth.isAdmin() ){
+
       this.router.navigate(['/']);
       return false
     }
     return true;
   }
+
 }
