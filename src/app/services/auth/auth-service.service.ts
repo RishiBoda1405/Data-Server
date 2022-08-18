@@ -43,6 +43,7 @@ export class AuthServiceService {
     return !helper.isTokenExpired(token);
   }
 
+
   public isAdmin():boolean {
     const token:any = localStorage.getItem('admin_token');
     const helper = new JwtHelperService();

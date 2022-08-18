@@ -21,7 +21,8 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [AdminguardService],
     component: AdminComponent
-  }
+  },
+
 ]
 
 @NgModule({
